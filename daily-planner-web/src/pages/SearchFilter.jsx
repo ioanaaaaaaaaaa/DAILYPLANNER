@@ -139,6 +139,26 @@ matchesEndTime
                 onChange={(event) => setDate(event.target.value)}
               />
             </div>
+
+            <div>
+  <label htmlFor="start-time">De la ora</label>
+  <input
+    id="start-time"
+    type="time"
+    value={startTime}
+    onChange={(event) => setStartTime(event.target.value)}
+  />
+</div>
+
+<div>
+  <label htmlFor="end-time">Până la ora</label>
+  <input
+    id="end-time"
+    type="time"
+    value={endTime}
+    onChange={(event) => setEndTime(event.target.value)}
+  />
+</div>
           </div>
 
           <div className="form-actions">
@@ -149,6 +169,8 @@ matchesEndTime
                 setStatus("Toate");
                 setPriority("Toate");
                 setDate("");
+                setStartTime("");
+setEndTime("");
               }}
             >
               Resetează filtrele

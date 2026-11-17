@@ -21,6 +21,42 @@ const [filterStatus, setFilterStatus] = useState("Toate");
     saveActivities(activities);
   }, [activities]);
 
+  // Actualizează automat activitățile restante
+useEffect(() => {
+  function checkOverdueActivities() {
+    const now = new Date();
+
+    setActivities((currentActivities) =>
+      currentActivities.map((activity) => {
+        const activityDate = new Date(
+          `${activity.date}T${activity.time}:00`
+        );
+
+        if (
+          activity.status === "Urmează" &&
+          activityDate < now
+        ) {
+          return {
+            ...activity,
+            status: "Restant",
+          };
+        }
+
+        return activity;
+      })
+    );
+  }
+
+  checkOverdueActivities();
+
+  const interval = setInterval(
+    checkOverdueActivities,
+    30000
+  );
+
+  return () => clearInterval(interval);
+}, []);
+
   const completed = activities.filter(
     (activity) => activity.status === "Complet"
   ).length;
