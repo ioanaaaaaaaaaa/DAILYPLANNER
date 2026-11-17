@@ -65,6 +65,14 @@ useEffect(() => {
     (activity) => activity.status === "Restant"
   ).length;
 
+  const upcoming = activities.filter(
+  (activity) => activity.status === "Urmează"
+).length;
+
+const canceled = activities.filter(
+  (activity) => activity.status === "Anulat"
+).length;
+
   const progress =
     activities.length === 0
       ? 0
@@ -249,6 +257,18 @@ useEffect(() => {
             <span>⏰ Necesită atenție</span>
           </div>
         </section>
+
+        <div className="stat-card blue-card">
+  <span>Urmează</span>
+  <strong>{upcoming}</strong>
+  <span>📅 Activități în așteptare</span>
+</div>
+
+<div className="stat-card gray-card">
+  <span>Anulate</span>
+  <strong>{canceled}</strong>
+  <span>✖ Activități anulate</span>
+</div>
 
         <section className="progress-card">
           <div className="progress-heading">

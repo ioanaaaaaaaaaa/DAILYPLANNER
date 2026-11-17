@@ -440,3 +440,8 @@ button, input, select {
   flex: 1;
   min-width: 200px;
 }
+
+.gray-card {
+  background-color: #e9eaf0;
+  color: #62677a;
+}
