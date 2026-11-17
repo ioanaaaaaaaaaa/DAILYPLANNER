@@ -11,6 +11,8 @@ function SearchFilter() {
   const [status, setStatus] = useState("Toate");
   const [priority, setPriority] = useState("Toate");
   const [date, setDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+const [endTime, setEndTime] = useState("");
 
   const filteredActivities = activities.filter((activity) => {
     const matchesName = activity.title
@@ -26,11 +28,19 @@ function SearchFilter() {
     const matchesDate =
       date === "" || activity.date === date;
 
+      const matchesStartTime =
+  startTime === "" || activity.time >= startTime;
+
+const matchesEndTime =
+  endTime === "" || activity.time <= endTime;
+
     return (
       matchesName &&
       matchesStatus &&
       matchesPriority &&
-      matchesDate
+    matchesDate &&
+matchesStartTime &&
+matchesEndTime
     );
   });
 
