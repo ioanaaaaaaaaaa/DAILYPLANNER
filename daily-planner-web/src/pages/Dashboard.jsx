@@ -14,6 +14,8 @@ function Dashboard() {
   );
   const [time, setTime] = useState("12:00");
   const [priority, setPriority] = useState("Medie");
+  const [searchTerm, setSearchTerm] = useState("");
+const [filterStatus, setFilterStatus] = useState("Toate");
 
   useEffect(() => {
     saveActivities(activities);
@@ -230,6 +232,25 @@ function Dashboard() {
         </section>
 
         <section className="activities-section">
+            <div className="search-filter">
+  <input
+    type="text"
+    placeholder="🔎 Caută o activitate..."
+    value={searchTerm}
+    onChange={(event) => setSearchTerm(event.target.value)}
+  />
+
+  <select
+    value={filterStatus}
+    onChange={(event) => setFilterStatus(event.target.value)}
+  >
+    <option value="Toate">Toate statusurile</option>
+    <option value="Urmează">Urmează</option>
+    <option value="Restant">Restant</option>
+    <option value="Complet">Complet</option>
+    <option value="Anulat">Anulat</option>
+  </select>
+</div>
           <div className="section-heading">
             <div>
               <h2>Activitățile mele</h2>
@@ -245,13 +266,24 @@ function Dashboard() {
             </div>
           ) : (
             <div className="activity-list">
-              {[...activities]
-                .sort((a, b) =>
-                  `${a.date} ${a.time}`.localeCompare(
-                    `${b.date} ${b.time}`
-                  )
-                )
-                .map((activity) => (
+             {[...activities]
+  .filter((activity) => {
+    const matchesSearch = activity.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      filterStatus === "Toate" ||
+      activity.status === filterStatus;
+
+    return matchesSearch && matchesStatus;
+  })
+  .sort((a, b) =>
+    `${a.date} ${a.time}`.localeCompare(
+      `${b.date} ${b.time}`
+    )
+  )
+  .map((activity) => (
                   <article className="activity-item" key={activity.id}>
                     <div className="activity-info">
                       <h3>{activity.title}</h3>

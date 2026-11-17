@@ -419,3 +419,24 @@ button, input, select {
 .edit-button:hover {
   background-color: #bfdbfe;
 }
+
+.search-filter {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.search-filter input,
+.search-filter select {
+  padding: 12px 15px;
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.search-filter input {
+  flex: 1;
+  min-width: 200px;
+}
