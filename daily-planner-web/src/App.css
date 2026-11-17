@@ -377,3 +377,45 @@ button, input, select {
   display: inline-flex;
   align-items: center;
 }
+
+/* Culori pentru statusurile activităților */
+.status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-upcoming {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-overdue {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-completed {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.status-canceled {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.edit-button {
+  background-color: #dbeafe;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-button:hover {
+  background-color: #bfdbfe;
+}

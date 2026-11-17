@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 import { getActivities, saveActivities } from "../utils/storage";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
+    const navigate = useNavigate();
   const [activities, setActivities] = useState(getActivities);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
@@ -263,6 +264,15 @@ function Dashboard() {
                     </div>
 
                     <div className="activity-actions">
+                        <button
+  className="edit-button"
+  onClick={() =>
+    navigate(`/edit-activity/${activity.id}`)
+  }
+  aria-label={`Editează ${activity.title}`}
+>
+  ✏️
+</button>
                       <select
                         value={activity.status}
                         onChange={(event) =>
@@ -275,6 +285,20 @@ function Dashboard() {
                         <option>Complet</option>
                         <option>Anulat</option>
                       </select>
+
+                      <span
+  className={`status ${
+    activity.status === "Urmează"
+      ? "status-upcoming"
+      : activity.status === "Restant"
+      ? "status-overdue"
+      : activity.status === "Complet"
+      ? "status-completed"
+      : "status-canceled"
+  }`}
+>
+  {activity.status}
+</span>
 
                       <button
                         className="delete-button"
