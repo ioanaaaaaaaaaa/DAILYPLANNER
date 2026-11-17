@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getActivities, saveActivities } from "../utils/storage";
 import "../App.css";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [activities, setActivities] = useState(getActivities);
@@ -75,19 +76,22 @@ function Dashboard() {
         <p className="menu-label">MENIU</p>
 
         <nav>
-          <a className="nav-link active" href="#">
-            🏠 Dashboard
-          </a>
-          <a className="nav-link" href="#">
-            ➕ Activitate nouă
-          </a>
-          <a className="nav-link" href="#">
-            🔎 Căutare și filtrare
-          </a>
-          <a className="nav-link" href="#">
-            📊 Statistici
-          </a>
-        </nav>
+  <Link className="nav-link active" to="/">
+    🏠 Dashboard
+  </Link>
+
+  <Link className="nav-link" to="/add-activity">
+    ➕ Activitate nouă
+  </Link>
+
+  <a className="nav-link" href="#activities">
+    🔎 Căutare și filtrare
+  </a>
+
+  <a className="nav-link" href="#statistics">
+    📊 Statistici
+  </a>
+</nav>
 
         <div className="sidebar-bottom">
           Organizează-ți ziua, pas cu pas.

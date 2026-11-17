@@ -353,3 +353,27 @@ button, input, select {
     flex-direction: column;
   }
 }
+
+.activity-form textarea {
+  width: 100%;
+  border: 1px solid #dce5f2;
+  background: #fbfcff;
+  padding: 12px;
+  border-radius: 9px;
+  color: #536985;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.activity-form textarea:focus,
+.activity-form input:focus,
+.activity-form select:focus {
+  outline: 2px solid #a9c9f7;
+  border-color: #6397e8;
+}
+
+.form-actions a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
