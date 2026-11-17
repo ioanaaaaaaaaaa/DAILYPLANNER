@@ -87,9 +87,9 @@ const [filterStatus, setFilterStatus] = useState("Toate");
     ➕ Activitate nouă
   </Link>
 
-  <a className="nav-link" href="#activities">
-    🔎 Căutare și filtrare
-  </a>
+  <Link className="nav-link" to="/search">
+  🔎 Căutare și filtrare
+</Link>
 
   <a className="nav-link" href="#statistics">
     📊 Statistici
