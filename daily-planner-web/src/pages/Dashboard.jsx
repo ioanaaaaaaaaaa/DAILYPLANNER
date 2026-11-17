@@ -231,7 +231,7 @@ const [filterStatus, setFilterStatus] = useState("Toate");
           </div>
         </section>
 
-        <section className="activities-section">
+        <section className="activities-section" id="activities">
             <div className="search-filter">
   <input
     type="text"
