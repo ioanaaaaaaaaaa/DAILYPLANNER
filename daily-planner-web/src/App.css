@@ -445,3 +445,167 @@ button, input, select {
   background-color: #e9eaf0;
   color: #62677a;
 }
+
+.profile {
+  border: none;
+  background: #e9efff;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 75px;
+  right: 30px;
+  width: 190px;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile-menu button {
+  border: none;
+  background: transparent;
+  padding: 12px;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #334155;
+}
+
+.profile-menu button:hover {
+  background: #edf2ff;
+}
+
+
+/* Setări pentru tema aplicației */
+:root {
+  --primary-color: #6495ed;
+}
+
+body,
+.sidebar,
+.progress-card,
+.activity-form,
+.activities-section,
+.settings-card,
+.profile-card {
+  transition: background-color 0.25s, color 0.25s;
+}
+
+/* Culoarea principală */
+.primary-button {
+  background: var(--primary-color);
+}
+
+.primary-button:hover {
+  filter: brightness(0.9);
+}
+
+.progress-heading strong {
+  color: var(--primary-color);
+}
+
+.progress-fill {
+  background: var(--primary-color);
+}
+
+.logo {
+  color: var(--primary-color);
+}
+
+/* Tema întunecată */
+:root[data-theme="dark"] body {
+  background: #171d2b;
+  color: #e5eaf5;
+}
+
+:root[data-theme="dark"] .sidebar,
+:root[data-theme="dark"] .progress-card,
+:root[data-theme="dark"] .activity-form,
+:root[data-theme="dark"] .activities-section,
+:root[data-theme="dark"] .settings-card,
+:root[data-theme="dark"] .profile-card {
+  background: #242d40;
+  color: #e5eaf5;
+}
+
+:root[data-theme="dark"] .welcome-section h1,
+:root[data-theme="dark"] .activity-info h3,
+:root[data-theme="dark"] .settings-card h1,
+:root[data-theme="dark"] .settings-card h2 {
+  color: #e5eaf5;
+}
+
+:root[data-theme="dark"] .activity-item {
+  border-color: #3b4961;
+}
+
+:root[data-theme="dark"] .nav-link {
+  color: #c0cce0;
+}
+
+:root[data-theme="dark"] .nav-link.active,
+:root[data-theme="dark"] .nav-link:hover {
+  background: #354563;
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea {
+  background: #303c52;
+  color: #ffffff;
+  border-color: #4a5b76;
+}
+
+:root[data-theme="dark"] .profile-menu {
+  background: #242d40;
+}
+
+:root[data-theme="dark"] .profile-menu button {
+  color: #e5eaf5;
+}
+
+:root[data-theme="dark"] .profile-menu button:hover {
+  background: #354563;
+}
+
+/* Culorile cardurilor și ale elementelor de accent */
+
+/* Culorile principale ale aplicației */
+
+:root[style*="--primary-color"] .primary-button {
+  background-color: var(--primary-color);
+}
+
+:root[data-theme="dark"] .primary-button {
+  color: white;
+}
+
+:root[data-theme="dark"] .secondary-button {
+  background: #354563;
+  color: #e5eaf5;
+}
+
+:root[data-theme="dark"] .activity-actions select,
+:root[data-theme="dark"] .search-filter input,
+:root[data-theme="dark"] .search-filter select {
+  background: #303c52;
+  color: white;
+  border-color: #4a5b76;
+}
+
+:root[data-theme="dark"] .topbar,
+:root[data-theme="dark"] .subtitle,
+:root[data-theme="dark"] .date-label {
+  color: #b5c3d9;
+}

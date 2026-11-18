@@ -7,6 +7,17 @@ import { Link, useNavigate } from "react-router-dom";
 function Dashboard() {
     const navigate = useNavigate();
   const [activities, setActivities] = useState(getActivities);
+  const [profile, setProfile] = useState(() => {
+  try {
+    const savedProfile = localStorage.getItem("daily-planner-profile");
+    return savedProfile
+      ? JSON.parse(savedProfile)
+      : { name: "Utilizator", avatar: "👤" };
+  } catch {
+    return { name: "Utilizator", avatar: "👤" };
+  }
+});
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(
@@ -147,34 +158,71 @@ const canceled = activities.filter(
 
       <main className="main-content">
         <header className="topbar">
-          <span>Planificatorul meu</span>
-          <span className="profile">👤</span>
+          <span>Planificatorul meu – {profile.name}</span>
+          <button
+  className="profile"
+  onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+>
+  {profile.avatar}
+</button>
+{profileMenuOpen && (
+  <div className="profile-menu">
+    <button onClick={() => navigate("/profile")}>
+      👤 Profilul meu
+    </button>
+
+    <button onClick={() => navigate("/settings")}>
+      ⚙️ Setări
+    </button>
+
+    <button onClick={() => navigate("/about")}>
+      ℹ️ Despre aplicație
+    </button>
+  </div>
+)}
         </header>
 
-        <section className="welcome-section">
-          <div>
-            <p className="date-label">
-              {new Date().toLocaleDateString("ro-RO", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
+<section className="welcome-section">
+  <div>
+    <p className="date-label">
+      {new Date().toLocaleDateString("ro-RO", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })}
+    </p>
 
-            <h1>Bună! 👋</h1>
-            <p className="subtitle">
-              Hai să facem ziua aceasta productivă!
-            </p>
-          </div>
+    {(() => {
+      let showGreeting = true;
 
-          <button
-            className="primary-button"
-            onClick={() => setShowForm(!showForm)}
-          >
-            + Adaugă activitate
-          </button>
-        </section>
+      try {
+        const savedSettings = JSON.parse(
+          localStorage.getItem("daily-planner-settings")
+        );
+        if (savedSettings?.showGreeting === false) {
+          showGreeting = false;
+        }
+      } catch {}
+
+      return showGreeting ? (
+        <>
+          <h1>Bună! 👋</h1>
+          <p className="subtitle">
+            Hai să facem ziua aceasta productivă!
+          </p>
+        </>
+      ) : null;
+    })()}
+  </div>
+
+  <button
+    className="primary-button"
+    onClick={() => setShowForm(!showForm)}
+  >
+    + Adaugă activitate
+  </button>
+</section>
 
         {showForm && (
           <form className="activity-form" onSubmit={addActivity}>
