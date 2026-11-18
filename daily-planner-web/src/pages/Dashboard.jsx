@@ -3,20 +3,12 @@ import { useEffect, useState } from "react";
 import { getActivities, saveActivities } from "../utils/storage";
 import "../App.css";
 import { Link, useNavigate } from "react-router-dom";
+import { getActiveProfile } from "../utils/profiles";
 
 function Dashboard() {
     const navigate = useNavigate();
   const [activities, setActivities] = useState(getActivities);
-  const [profile, setProfile] = useState(() => {
-  try {
-    const savedProfile = localStorage.getItem("daily-planner-profile");
-    return savedProfile
-      ? JSON.parse(savedProfile)
-      : { name: "Utilizator", avatar: "👤" };
-  } catch {
-    return { name: "Utilizator", avatar: "👤" };
-  }
-});
+ const [profile, setProfile] = useState(getActiveProfile);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
@@ -134,7 +126,7 @@ const canceled = activities.filter(
         <p className="menu-label">MENIU</p>
 
         <nav>
-  <Link className="nav-link active" to="/">
+  <Link className="nav-link active" to="/dashboard">
     🏠 Dashboard
   </Link>
 
@@ -178,6 +170,11 @@ const canceled = activities.filter(
     <button onClick={() => navigate("/about")}>
       ℹ️ Despre aplicație
     </button>
+
+    <button onClick={() => navigate("/choose-profile")}>
+  🔄 Schimbă profilul
+</button>
+
   </div>
 )}
         </header>

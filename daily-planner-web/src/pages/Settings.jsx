@@ -39,7 +39,7 @@ function Settings() {
   return (
     <div className="settings-page">
       <div className="settings-card">
-        <Link to="/" className="back-link">
+        <Link to="/dashboard" className="back-link">
           ← Înapoi la Dashboard
         </Link>
 

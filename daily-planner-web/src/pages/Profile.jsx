@@ -1,42 +1,47 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-
-const PROFILE_KEY = "daily-planner-profile";
+import { getActiveProfile, updateProfile } from "../utils/profiles";
 
 function Profile() {
-  const [profile, setProfile] = useState(() => {
-    try {
-      const savedProfile = localStorage.getItem(PROFILE_KEY);
-      return savedProfile
-        ? JSON.parse(savedProfile)
-        : { name: "Utilizator", avatar: "👤" };
-    } catch {
-      return { name: "Utilizator", avatar: "👤" };
-    }
-  });
-
+  const [profile, setProfile] = useState(getActiveProfile);
   const [editing, setEditing] = useState(false);
-  const [newName, setNewName] = useState(profile.name);
+  const [newName, setNewName] = useState(profile?.name || "");
 
-  useEffect(() => {
-    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
-  }, [profile]);
+  const avatars = ["👤", "👩", "👩‍💻", "🧑‍🎓", "🌸", "⭐"];
 
   function saveName() {
-    if (!newName.trim()) return;
+    if (!newName.trim() || !profile) return;
 
-    setProfile({ ...profile, name: newName.trim() });
+    const updatedProfiles = updateProfile(profile.id, {
+      name: newName.trim(),
+    });
+
+    const updatedProfile = updatedProfiles.find(
+      (item) => item.id === profile.id
+    );
+
+    setProfile(updatedProfile);
     setEditing(false);
   }
 
-  const avatars = ["👤", "👩", "👩‍💻", "🧑‍🎓", "🌸", "⭐"];
+  function saveAvatar(avatar) {
+    if (!profile) return;
+
+    const updatedProfiles = updateProfile(profile.id, { avatar });
+
+    const updatedProfile = updatedProfiles.find(
+      (item) => item.id === profile.id
+    );
+
+    setProfile(updatedProfile);
+  }
 
   return (
     <div className="profile-page">
       <div className="profile-card">
-        <Link to="/" className="back-link">
+       <Link to="/dashboard" className="back-link">
           ← Înapoi la Dashboard
         </Link>
 
@@ -60,7 +65,7 @@ function Profile() {
               className={
                 profile.avatar === avatar ? "avatar-option selected" : "avatar-option"
               }
-              onClick={() => setProfile({ ...profile, avatar })}
+              onClick={() => saveAvatar(avatar)}
             >
               {avatar}
             </button>
