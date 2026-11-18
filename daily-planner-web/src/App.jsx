@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import AddActivity from "./pages/AddActivity";
 import EditActivity from "./pages/EditActivity";
 import SearchFilter from "./pages/SearchFilter";
+import Statistics from "./pages/Statistics";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/add-activity" element={<AddActivity />} />
         <Route path="/edit-activity/:id" element={<EditActivity />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/statistics" element={<Statistics />} />
       </Routes>
     </BrowserRouter>
   );

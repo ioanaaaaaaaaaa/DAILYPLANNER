@@ -135,9 +135,9 @@ const canceled = activities.filter(
   🔎 Căutare și filtrare
 </Link>
 
-  <a className="nav-link" href="#statistics">
-    📊 Statistici
-  </a>
+  <Link className="nav-link" to="/statistics">
+  📊 Statistici
+</Link>
 </nav>
 
         <div className="sidebar-bottom">
